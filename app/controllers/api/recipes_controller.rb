@@ -1,17 +1,19 @@
 class Api::RecipesController < ApplicationController
   def index
-    if current_user
-      @recipes = current_user.recipes
+    # if current_user
+    #   @recipes = current_user.recipes
 
-      search_term = params[:search]
-      if search_term
-        @recipes = @recipes.where("title iLIKE ? OR ingredients iLIKE ?", "%#{search_term}%", "%#{search_term}%")
-      end
+    #   search_term = params[:search]
+    #   if search_term
+    #     @recipes = @recipes.where("title iLIKE ? OR ingredients iLIKE ?", "%#{search_term}%", "%#{search_term}%")
+    #   end
 
-      render 'index.json.jbuilder'
-    else
-      render json: []
-    end
+    #   render 'index.json.jbuilder'
+    # else
+    #   render json: []
+    # end
+  @recipes = Recipe.all
+  render 'index.json.jbuilder'
   end
 
   def create
